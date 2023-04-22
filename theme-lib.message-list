@@ -45,6 +45,46 @@
    <#case "replies">
        <#assign orderClause = "ORDER BY replies.count(*) DESC " />
    <#break>
+   <#-- Sort by post time from the newest to oldest -->
+   <#case "timeNewToOld">
+       <#assign orderClause = "ORDER BY conversation.last_post_time ASC " />
+   <#break>
+   <#-- Sort by kudos number from the lowest to highest -->
+   <#case "kudosLowToHigh">
+       <#assign orderClause = "ORDER BY kudos.sum(weight) ASC " />
+   <#break>
+
+   <#-- Sort by unanswered questions. First option -->
+   <#case "unanswered">
+       <#assign orderClause = "ORDER BY replies.count(*) ASC " />
+   <#break>
+
+   <#-- Second option to sort unanswered questions and get only with no replies. Reassign 'whereClause' by adding condition where are no replies. -->
+   <#-- Assign 'orderClause' as in default case, because this variable is being used forward. -->
+   <#-- But I assume that sorting means to sort, not to filter, so I tend to the first option. -->
+   <#--
+   <#case "unanswered">
+          <#assign whereClause = whereClause + " AND replies.count(*) = 0 " />
+          <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
+   <#break>
+   -->
+
+
+   <#-- Sort by questions with no solution. First option. This will return all the records sorted by the conservation.solved column in ascending order, -->
+   <#-- which means all the false values will come first followed by true values. -->
+   <#case "noSolution">
+       <#assign orderClause = "ORDER BY conversation.solved ASC " />
+   <#break>
+
+   <#-- Second option to sort by questions with no solution. This will return the records only with no solution. -->
+   <#-- But as in previous sort method, first option would be more correct if we want to sort records. -->
+   <#--
+   <#case "noSolution">
+          <#assign whereClause = whereClause + " AND conversation.solved = false " />
+          <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
+   <#break>
+   -->
+
    <#default>
        <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
    <#break>
@@ -77,6 +117,10 @@
                    <option value="views" <#if sorting == 'views'>selected</#if>>${text.format("theme-lib.community-activity.views")}</option>
                    <option value="replies" <#if sorting == 'replies'>selected</#if>>${text.format("theme-lib.community-activity.replies")}</option>
                    <option value="kudos" <#if sorting == 'kudos'>selected</#if>>${text.format("theme-lib.community-activity.kudos")}</option>
+                   <option value="timeNewToOld" <#if sorting == 'timeNewToOld'>selected</#if>>${text.format("theme-lib.community-activity.timeNewToOld")}</option>
+                   <option value="kudosLowToHigh" <#if sorting == 'kudosLowToHigh'>selected</#if>>${text.format("theme-lib.community-activity.kudosLowToHigh")}</option>
+                   <option value="unanswered" <#if sorting == 'unanswered'>selected</#if>>${text.format("theme-lib.community-activity.unanswered")}</option>
+                   <option value="noSolution" <#if sorting == 'noSolution'>selected</#if>>${text.format("theme-lib.community-activity.noSolution")}</option>
                </select>
                <#if page.interactionStyle=="idea">
                  <@component id="custom.idea.status.label" />
