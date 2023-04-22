@@ -225,6 +225,25 @@
    font-weight: 300;
    justify-content: center;
 }
+/* Div class for button */
+.button-map-div {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+}
+
+/* Button style class */
+.button-map {
+    border-radius: 8px;
+    border: none;
+    background: #bc3fe5;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 12px 25px;
+    text-align: center;
+    cursor: pointer;
+}
 
 /*Join page - Testimonials component*/
 
@@ -711,7 +730,27 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
 <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet preconnect">
+  <script>
 
+    /* Window listener to create div with button on load. */
+    window.addEventListener('load', function() {
+
+      const map = document.getElementById('map-content');
+
+      const buttonDiv = document.createElement('div');
+      buttonDiv.classList.add('button-map-div');
+
+      const buttonMap = document.createElement('button');
+      buttonMap.classList.add('button-map');
+      buttonMap.innerHTML = "Maps";
+      buttonMap.addEventListener('click', function() {
+        window.open('https://www.google.com/maps');
+      });
+
+      buttonDiv.appendChild(buttonMap);
+      map.appendChild(buttonDiv);
+    });
+  </script>
 </head>
 <body>
 
@@ -826,7 +865,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
 </div>
 
 <div class="map-wrapper">
-  <div class="map-content">
+  <div class="map-content" id="map-content">
     <div class="map-content-title">
       <div class="map-content-title-light">
         <p>Become a part of <b>global community</b></p>
