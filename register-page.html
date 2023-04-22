@@ -125,6 +125,12 @@
     padding-bottom: 10px;
 }
 
+/* Make icons a little bit bigger on hover */
+.benefits-content-list-icon:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
 .benefits-content-list-icon > img {
     height: 60px;
 }
@@ -680,6 +686,21 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
     opacity: 1;
 }
 
+/* Apply these styles to the benefits section when the screen width is less than 900px */
+@media (max-width: 900px) {
+
+  .benefits-content-list {
+    /* Change display to grid */
+    display: grid;
+    /* 3 columns and 2 rows */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    /* center items */
+    justify-items: center;
+  }
+
+}
 
 
 
