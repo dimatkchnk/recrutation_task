@@ -7,7 +7,8 @@
 <#assign sorting = http.request.parameters.name.get("sort", "") />
  
 <#-- page size -->
-<#assign pageSize = coreNode.settings.name.get("layout.messages_per_page_linear", "10")?number />
+<#-- Set up page size to exactly 30 posts per page. Specific number, because it should not be getting from other source, should be static.  -->
+<#assign pageSize = 30 />
 <#if user.registered>
    <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
    <#if pageSizeUser?number != pageSize?number>
