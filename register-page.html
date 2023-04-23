@@ -743,6 +743,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
       const buttonMap = document.createElement('button');
       buttonMap.classList.add('button-map');
       buttonMap.innerHTML = "Maps";
+      /* Add listener to redirect user to the Google Maps */
       buttonMap.addEventListener('click', function() {
         window.open('https://www.google.com/maps');
       });
@@ -902,6 +903,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
     <li data-target="#testimonials-carousel" data-slide-to="1"></li>
     <li data-target="#testimonials-carousel" data-slide-to="2"></li>
     <li data-target="#testimonials-carousel" data-slide-to="3"></li>
+    <!-- Add indicator for new item in carousel -->
     <li data-target="#testimonials-carousel" data-slide-to="4"></li>
   </ol>
 
@@ -990,6 +992,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
      </div>
     </div>
 
+    <!-- New item with the same structure as previous items, only text and image were changed -->
     <div class="item">
       <div class="testimonials-quote-wrap">
         <div class="testimonials-quote-element">

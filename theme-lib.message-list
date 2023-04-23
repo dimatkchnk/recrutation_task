@@ -7,14 +7,10 @@
 <#assign sorting = http.request.parameters.name.get("sort", "") />
  
 <#-- page size -->
-<#-- Set up page size to exactly 30 posts per page. Specific number, because it should not be getting from other source, should be static.  -->
+<#-- Set up page size to exactly 30 posts per page. -->
+<#-- Specific number, because it should not be getting from other source, should be static. -->
+<#-- Delete assigning pageSizeUser, because it is no longer adjustable value -->
 <#assign pageSize = 30 />
-<#if user.registered>
-   <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
-   <#if pageSizeUser?number != pageSize?number>
-       <#assign pageSize = pageSizeUser />
-   </#if>
-</#if>
  
 <#if webuisupport.path.parameters.name.get("label-name")??>
    <#assign label = webuisupport.path.parameters.name.get("label-name").getText() />
@@ -112,6 +108,7 @@
    <section>
        <header>
            <div class="custom-message-list-header-left">
+           <#-- Add new sort methods to dropdown menu -->
                <select id="community-activity-sorted-by">
                    <option value="recent" <#if sorting == 'recent'>selected</#if>>${text.format("theme-lib.community-activity.recent")}</option>
                    <option value="views" <#if sorting == 'views'>selected</#if>>${text.format("theme-lib.community-activity.views")}</option>
@@ -193,9 +190,10 @@
        <#assign msg_status_icon = "custom-thread-floated" />
        <#assign msg_status_txt = "theme-lib.general.thread-floated" />
    </#if>
+   <#-- Changed class name for solved threads.   -->
    <#if msg.conversation.solved>
-       <#assign solved = "custom-thread-solved" />
-       <#assign msg_status_icon = "custom-thread-solved" />
+       <#assign solved = "thread-solved" />
+       <#assign msg_status_icon = "thread-solved" />
        <#assign msg_status_txt = "theme-lib.general.thread-solved" />
    </#if>
    <#if !msg.user_context.read>
