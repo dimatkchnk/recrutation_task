@@ -190,10 +190,11 @@
        <#assign msg_status_icon = "custom-thread-floated" />
        <#assign msg_status_txt = "theme-lib.general.thread-floated" />
    </#if>
-   <#-- Changed class name for solved threads.   -->
+   <#-- Changed class name for solved threads. The 'solved-thread' could be a good name to understand what 'solved' contain   -->
+   <#-- Also the name of 'msg_status_icon' was changed, based on previous classes where this two variables have the same name.   -->
    <#if msg.conversation.solved>
-       <#assign solved = "thread-solved" />
-       <#assign msg_status_icon = "thread-solved" />
+       <#assign solved = "solved-thread" />
+       <#assign msg_status_icon = "solved-thread" />
        <#assign msg_status_txt = "theme-lib.general.thread-solved" />
    </#if>
    <#if !msg.user_context.read>
