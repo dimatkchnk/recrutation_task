@@ -9,7 +9,7 @@
 <#-- page size -->
 <#-- Set up page size to exactly 30 posts per page. -->
 <#-- Specific number, because it should not be getting from other source, should be static. -->
-<#-- Delete assigning pageSizeUser, because it is no longer adjustable value -->
+<#-- Delete assigning pageSizeUser, because it is no longer adjustable value. -->
 <#assign pageSize = 30 />
  
 <#if webuisupport.path.parameters.name.get("label-name")??>
@@ -108,7 +108,7 @@
    <section>
        <header>
            <div class="custom-message-list-header-left">
-           <#-- Add new sort methods to dropdown menu -->
+           <#-- Add new sort methods to dropdown menu based on existing options. -->
                <select id="community-activity-sorted-by">
                    <option value="recent" <#if sorting == 'recent'>selected</#if>>${text.format("theme-lib.community-activity.recent")}</option>
                    <option value="views" <#if sorting == 'views'>selected</#if>>${text.format("theme-lib.community-activity.views")}</option>
